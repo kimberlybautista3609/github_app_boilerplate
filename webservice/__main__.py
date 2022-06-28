@@ -28,6 +28,7 @@ async def webhook(request):
     try:
         body = await request.read()
         secret = os.environ.get("GH_SECRET")
+        print(secret)
         event = sansio.Event.from_http(request.headers, body, secret=secret)
         if event.event == "ping":
             return web.Response(status=200)
