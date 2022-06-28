@@ -29,7 +29,7 @@ async def webhook(request):
         body = await request.read()
         secret = os.environ.get("GH_SECRET")
         print(secret)
-        event = sansio.Event.from_http(request.headers, body, secret=secret)
+        event = sansio.Event.from_http(request.headers, body)
         if event.event == "ping":
             return web.Response(status=200)
         async with aiohttp.ClientSession() as session:
